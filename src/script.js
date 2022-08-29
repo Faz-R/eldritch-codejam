@@ -256,7 +256,7 @@ function makePack(monster){
 
     console.log(result) 
 
-    showCardButton.addEventListener('click', () => {    
+    showCardButton.onclick = function(){    
         console.log(result)
 
         mix.classList.remove('active-show');    
@@ -278,19 +278,24 @@ function makePack(monster){
                         item.textContent--;
                     }
                 }
-                result[i].splice(num, 1);   
-            
-
+                result[i].splice(num, 1);  
                 break;  
 
-            }else{  
+            }else if(result[result.length-1] == 0){ 
+                result = [];
+                showCardButton.onclick = undefined;
+                showCardButton.classList.add('hidden');
+                
+            }else{
 
                 continue;
             }   
 
-        }   
+        }
+        
+        
 
         
-    })
+    }
 
 }
