@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Document</title>
+</head>
+<body>
+    <div class="container">
+        <section class="left">
+            <div class="monster azathoth" id="azathoth"></div>
+            <div class="monster cthulhu" id="cthulhu"></div>
+            <div class="monster iogSothoth" id="iogSothoth"></div>
+            <div class="monster shubNiggurath" id="shubNiggurath"></div>
+        </section>
+        <section class="center">
+            <span>Выберите сложность</span>
+            <div class="separator"></div>
+            <ul class="levels"></ul>
+            <div class="separator"></div>
+            <div class="mix">Замешать колоду</div>
+        </section>
+        <section class="right">
+            <div class="stages">
+                <!--  -->
+                <div class="stage-container">
+                    <span class="stage-text">Первый этап</span>
+                    <div class="dots-container firstStage">
+                        <div class="dot green">0</div>
+                        <div class="dot blue">0</div>
+                        <div class="dot brown">0</div>
+                    </div>
+                </div>
+                <div class="stage-container">
+                    <span class="stage-text">Второй этап</span>
+                    <div class="dots-container secondStage">
+                        <div class="dot green">0</div>
+                        <div class="dot blue">0</div>
+                        <div class="dot brown">0</div>
+                    </div>
+                </div>
+                <div class="stage-container">
+                    <span class="stage-text">Третий этап</span>
+                    <div class="dots-container thirdStage">
+                        <div class="dot green">0</div>
+                        <div class="dot blue">0</div>
+                        <div class="dot brown">0</div>
+                    </div>
+                </div>
+                <!--  -->
+            </div>
+            <div class="shirt"><img src="../assets/mythicCardBackground.png" alt="mythicCardBackground"></div>
+            <div class="result"></div>
+        </section>
+    </div>
+    <script type="module" src="script.js"></script>
+    <script type="module" src="../data/ancients.js"></script>
+    <script type="module" src="../data/difficulties.js"></script>
+    <script type="module" src="../data/mythicCards/blue/index.js"></script>
+    <script type="module" src="../data/mythicCards/brown/index.js"></script>
+    <script type="module" src="../data/mythicCards/green/index.js"></script>
+</body>
+</html>

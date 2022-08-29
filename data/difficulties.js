@@ -1,4 +1,5 @@
 const difficulties = [
+
   {
     id: 'easy',
     name: 'Низкая'

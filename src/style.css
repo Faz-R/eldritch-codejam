@@ -1,0 +1,195 @@
+body{
+    margin: 0;
+    padding: 0;
+    width: 100vw;
+    height: 100vh;
+    background: center no-repeat url('../assets/home.png');
+}
+
+.container{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+}
+
+.left, .right{
+    padding: 40px;
+    width: 40%;
+}
+
+.center{
+    width: 20%;
+    height: auto;
+    padding: 40px;
+    
+}
+
+.left{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    align-items: center;
+    
+    gap: 40px;
+}
+
+/* @media (max-width: 1340px){
+    .left{
+        height: 200px;
+    }
+    .monster{
+        min-width: 100px;
+        min-height: 130px;
+        flex-shrink: 0;
+    }
+} */
+
+.monster{
+    width: 200px;
+    height: 260px;
+    background-repeat: no-repeat;
+    background-size: cover;
+    transition: transform 0.5s;
+}
+
+.monster:hover{
+    transform: scale(1.5);
+} 
+
+.center{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+}
+
+.center span{
+    font-size: 24px;
+    color: #fff;
+}
+
+.levels{
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+}
+
+.level{
+    font-size: 18px;
+    color: #fff;
+    border: 1px solid #fff;
+    padding: 10px;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.level:hover, .mix:hover{
+    background-color: coral;
+}
+
+.separator{
+    width: 100%;
+    height: 1px;
+    background-color: #fff;
+    margin: 10px 0;
+}
+
+.mix{
+    font-size: 24px;
+    color: #fff;
+    border: 1px solid #fff;
+    padding: 10px;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.right{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+}
+
+.shirt, .result{
+    width: 180px;
+    height: fit-content;
+    cursor: pointer;    
+}
+
+.shirt img{
+    width: 100%;
+}
+
+.result{
+    width: 200px;
+    height: 260px;
+    border: 1px solid #fff;
+    background-repeat: no-repeat;
+    background-size: cover;
+    transition: 0.5s;
+}
+
+.result:hover{
+    transform: scale(1.5);
+}
+
+.active{
+    outline: 3px solid coral;
+}
+
+.active-show{
+    background-color: coral;
+}
+
+.stage-container{
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.stage-text {
+    color: #fff;
+    font-size: 21px;
+}
+
+.dots-container{
+    align-items: center;
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    margin-bottom: 10px;
+}
+
+.dot{
+    align-items: center;
+    border-radius: 50%;
+    display: flex;
+    height: 30px;
+    justify-content: center;
+    width: 30px;
+}
+
+.green{
+    background-color: green;
+}
+
+.brown{
+    background-color: rgb(170, 21, 21);
+}
+
+.blue{
+    background-color: blue;
+}
+
+.hidden{
+    visibility: hidden;
+}
