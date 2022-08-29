@@ -13,9 +13,14 @@ body{
     flex-direction: row;
 }
 
-.left, .right{
-    padding: 40px;
-    width: 40%;
+.left{
+    padding: 20px;
+    width: 50%;
+}
+
+.right{
+    padding: 20px;
+    width: 30%;
 }
 
 .center{
@@ -34,23 +39,24 @@ body{
     gap: 40px;
 }
 
-/* @media (max-width: 1340px){
-    .left{
-        height: 200px;
-    }
-    .monster{
-        min-width: 100px;
-        min-height: 130px;
-        flex-shrink: 0;
-    }
-} */
 
 .monster{
-    width: 200px;
-    height: 260px;
+    width: 220px;
+    height: 270px;
     background-repeat: no-repeat;
     background-size: cover;
     transition: transform 0.5s;
+}
+
+@media (max-width: 1140px){
+    .monster{
+        width: 180px;
+        height: 220px;
+    }
+    .left{
+        width: 50%;
+        gap: 10px;
+    }
 }
 
 .monster:hover{
