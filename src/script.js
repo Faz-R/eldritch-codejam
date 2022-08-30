@@ -12,9 +12,6 @@ function getRandom(num) {
     return Math.ceil(Math.random() * num);
 };
 
-//Сложность
-
-
 const levels = document.querySelector('.levels');
 
 difficulties.forEach(e => {
@@ -24,8 +21,6 @@ difficulties.forEach(e => {
 li.textContent = e.name;
 levels.appendChild(li);
 })
-
-
 
 const monsters = document.querySelectorAll('.monster');
 
@@ -52,7 +47,6 @@ monsters.forEach((e)=>{e.addEventListener('click', ()=> {
 
 })
 
-
 function makePack(monster){
 
     let dots = document.querySelectorAll('.dots-container');
@@ -69,7 +63,6 @@ function makePack(monster){
     let blueCards = [];
     let brownCards = [];
 
-
     const complexity = document.querySelectorAll('.level');
 
     complexity.forEach(e => e.classList.remove('active-show'));
@@ -78,54 +71,78 @@ function makePack(monster){
             complexity.forEach(e => e.classList.remove('active-show'));
             e.classList.add('active-show');
             let hardness;
+            let very = false;
             if(e.id == 'easy'){
                 hardness = 'hard'
             }else if( e.id == 'hard'){
                 hardness = 'easy';
-            }else{
+            }else if(e.id == 'very-hard'){
+                hardness = 'easy';
+                very = true;
+
+            }else if(e.id == 'very-easy'){
+                hardness = 'hard';
+                very = true;
+            }
+            else{
                 hardness = 'normal';
             }
-            greenCards = getBlock('green', hardness);
-            blueCards = getBlock('blue', hardness);
-            brownCards = getBlock('brown', hardness);
+            greenCards = getBlock('green', hardness, very);
+            blueCards = getBlock('blue', hardness, very);
+            brownCards = getBlock('brown', hardness, very);
         }
     })
     
+    function getBlock(color, hardness, very){
+
+        let array = []; 
+
+
+        if(color == 'blue'){
+            array = blueCardsData;
+        }else if( color == 'green'){
+            array = greenCardsData;
+        }else{
+            array = brownCardsData;
+        }   
+
+        let cardsData = array.concat();
+
+        let firstArr = [];
+        let secondArr = [];
     
-    function getBlock(color, hardness){
+        if(hardness != 'normal'){   
 
-    let array = [];
+            let delElem = [];
+            for(let item of cardsData){
+                if(item.difficulty === hardness){       
+
+                    delElem.push(cardsData.indexOf(item));
+                }
+            }
+
+            delElem.reverse();  
+
+            delElem.forEach(e =>{
+            cardsData.splice(e, 1);
+            })
+
+            function byField(field) {
+                return (a, b) => a[field] > b[field] ? 1 : -1;
+            }
 
 
-    if(color == 'blue'){
-        array = blueCardsData;
-    }else if( color == 'green'){
-        array = greenCardsData;
-    }else{
-        array = brownCardsData;
-    }
 
-    let cardsData = array.concat();
-    
-    if(hardness != 'normal'){
+    if(very){
 
-
-        let delElem = [];
-        for(let item of cardsData){
-        if(item.difficulty === hardness){
-
-            delElem.push(cardsData.indexOf(item));
-        }
-    }
-
-    delElem.reverse();
-
-    delElem.forEach(e =>{
-        cardsData.splice(e, 1);
-    })
+        cardsData.sort(byField('difficulty'));
+        firstArr = cardsData.filter(e => e.difficulty.includes('easy' || 'hard'));
+        secondArr = cardsData.filter(e => e.difficulty.includes('normal'));
 
     }
 
+
+    }
 
     function getQuantityOfCards(color){
         let res = 0;
@@ -136,8 +153,6 @@ function makePack(monster){
     }
     return res;
     }   
-
-
     
     let quantityCards = getQuantityOfCards(color);
     
@@ -145,7 +160,23 @@ function makePack(monster){
 
     
     while(quantityCards > 0){
-        let card = cardsData[getRandom(cardsData.length -1)];
+        let card;
+        if(very){
+            let cardNum;
+            if(firstArr.length > 0){
+                cardNum = getRandom(firstArr.length -1);
+                card = firstArr[cardNum];
+                firstArr.splice(cardNum, 1);
+            }else{            
+            cardNum = getRandom(secondArr.length -1);
+            card = secondArr[cardNum];
+            secondArr.splice(cardNum, 1);
+        }
+
+
+        }else{
+            card = cardsData[getRandom(cardsData.length -1)];
+        }
         if(arr.includes(card)){
             continue;
         }else{
@@ -156,7 +187,6 @@ function makePack(monster){
 
     return arr;
     }
-
 
     function getDots(){
 
@@ -170,8 +200,6 @@ function makePack(monster){
 
     if(key.includes('Stage')){
 
-        
-
         let arr = [];
         for(let card in monster[key]){
 
@@ -179,8 +207,6 @@ function makePack(monster){
             let stage = document.querySelector(`.${key}`);
 
             let quanOfCards = monster[key][card];
-
-
 
             if(card == 'greenCards'){
 
@@ -235,10 +261,8 @@ function makePack(monster){
         }
         result.push(arr);
 
-
     }
     }   
-    
 
     }   
 
@@ -246,15 +270,12 @@ function makePack(monster){
         mix.classList.add('active-show');
         complexity.forEach(e => e.onclick = undefined); 
     
-
         getDots();
-
         
         showCardButton.classList.remove('hidden');
         mix.onclick = undefined;
     }   
 
-    console.log(result) 
 
     showCardButton.onclick = function(){    
         console.log(result)
@@ -262,14 +283,12 @@ function makePack(monster){
         mix.classList.remove('active-show');    
 
         for(let i = 0; i < result.length; i++){ 
+            // console.log(result)
 
             if(result[i].length > 0){
                 let num = [getRandom(result[i].length -1)];    
 
-            
                 showCard.style.backgroundImage = `url(${result[i][num].cardFace})`; 
-
-
 
                 for(let item of dotsBlock[i].children){
 
@@ -292,9 +311,6 @@ function makePack(monster){
             }   
 
         }
-        
-        
-
         
     }
 
