@@ -136,8 +136,13 @@ function makePack(monster){
     if(very){
 
         cardsData.sort(byField('difficulty'));
-        firstArr = cardsData.filter(e => e.difficulty.includes('easy'));
-        firstArr = cardsData.filter(e => e.difficulty.includes('hard'));
+        if(hardness == 'hard'){
+            firstArr = cardsData.filter(e => e.difficulty.includes('easy'));
+        }else if(hardness == 'easy'){
+            firstArr = cardsData.filter(e => e.difficulty.includes('hard'));
+        }
+
+
         secondArr = cardsData.filter(e => e.difficulty.includes('normal'));
 
     }
